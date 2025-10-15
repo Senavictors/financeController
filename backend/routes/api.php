@@ -10,3 +10,4 @@ Route::get('/health', function () {
 
 Route::get('/transactions', [TransactionController::class, 'index']);
 Route::post('/transactions', [TransactionController::class, 'store']);
+Route::get('/transactions/list', [TransactionController::class, 'list']);   

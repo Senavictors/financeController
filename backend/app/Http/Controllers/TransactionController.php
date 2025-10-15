@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -28,5 +29,11 @@ class TransactionController extends Controller
             'message' => 'Transaction created',
             'transaction' => $data,
         ], 201);
+    }
+
+    public function list (Request $request)
+    {
+        $transactions = Transaction::all();
+        return response()->json($transactions);
     }
 }
