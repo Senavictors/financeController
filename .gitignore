@@ -1,28 +1,73 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# dependencies
+# System files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
 /node_modules
-.DS_Store
+vendor/
 
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
+# Environment files
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+.env.backup
+.env.production
 
+# Frontend (React) - Build files
+/build
+/front/build
+/front/node_modules
+
+# Backend (Laravel) - Generated files
+/backend/vendor
+/backend/node_modules
+/backend/public/hot
+/backend/public/storage
+/backend/storage/*.key
+/backend/storage/pail
+/backend/bootstrap/cache/*.php
+/backend/.phpunit.result.cache
+/backend/auth.json
+
+# Laravel specific
+/backend/storage/logs/*
+/backend/storage/framework/cache/*
+/backend/storage/framework/sessions/*
+/backend/storage/framework/views/*
+
+# Testing
+/coverage
+/backend/tests/coverage
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
 
+# Lock files (opcional - remova se quiser versionar)
 package-lock.json
 yarn.lock
 
+# IDE files
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+.phpactor.json
+
+# Docker
+docker-compose.override.yml
+
+# Custom scripts
 commit.sh
+
+# Database
+*.sqlite
+*.sqlite3

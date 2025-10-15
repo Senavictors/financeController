@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  # Frontend React
+  frontend:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000/api
+    depends_on:
+      - backend
+    networks:
+      - finance-network
+
+  # Backend Laravel
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ./backend:/var/www
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=finance_controller
+      - DB_USERNAME=finance_user
+      - DB_PASSWORD=finance_password
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - finance-network
+
+  # Banco de dados MySQL
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=finance_controller
+      - MYSQL_USER=finance_user
+      - MYSQL_PASSWORD=finance_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./backend/database/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - finance-network
+
+  # phpMyAdmin (opcional para gerenciar o banco)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - PMA_USER=finance_user
+      - PMA_PASSWORD=finance_password
+    depends_on:
+      - mysql
+    networks:
+      - finance-network
+
+volumes:
+  mysql_data:
+
+networks:
+  finance-network:
+    driver: bridge
