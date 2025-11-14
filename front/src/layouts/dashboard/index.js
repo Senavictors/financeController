@@ -1,16 +1,9 @@
 /**
 =========================================================
-* Material Dashboard 2 React - v2.2.0
+* Finance Controller - Dashboard Principal
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+* Dashboard principal do aplicativo de gestão financeira pessoal
 */
 
 // @mui material components
@@ -46,43 +39,14 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
-                color="dark"
-                icon="weekend"
-                title="Saldo Atual"
-                count={281}
-                percentage={{
-                  color: "success",
-                  amount: "+55%",
-                  label: "than lask week",
-                }}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                icon="leaderboard"
-                title="Receita"
-                count="2,300"
-                percentage={{
-                  color: "success",
-                  amount: "+3%",
-                  label: "than last month",
-                }}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
                 color="success"
-                icon="store"
-                title="Despesa"
-                count="34k"
+                icon="account_balance_wallet"
+                title="Saldo Atual"
+                count="R$ 12.450,00"
                 percentage={{
                   color: "success",
-                  amount: "+1%",
-                  label: "than yesterday",
+                  amount: "+5.2%",
+                  label: "vs mês anterior",
                 }}
               />
             </MDBox>
@@ -90,14 +54,44 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
-                color="primary"
-                icon="person_add"
-                title="Cartão de Crédito"
-                count="+91"
+                color="info"
+                icon="trending_up"
+                title="Receita Mensal"
+                count="R$ 8.750,00"
                 percentage={{
                   color: "success",
-                  amount: "",
-                  label: "Just updated",
+                  amount: "+12%",
+                  label: "vs mês anterior",
+                }}
+              />
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+              <ComplexStatisticsCard
+                color="error"
+                icon="trending_down"
+                title="Despesas Mensais"
+                count="R$ 6.320,00"
+                percentage={{
+                  color: "error",
+                  amount: "-8%",
+                  label: "vs mês anterior",
+                }}
+              />
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+              <ComplexStatisticsCard
+                color="warning"
+                icon="credit_card"
+                title="Cartão de Crédito"
+                count="R$ 2.150,00"
+                percentage={{
+                  color: "warning",
+                  amount: "65%",
+                  label: "do limite utilizado",
                 }}
               />
             </MDBox>
@@ -109,9 +103,9 @@ function Dashboard() {
               <MDBox mb={3}>
                 <ReportsBarChart
                   color="info"
-                  title="Receita"
-                  description="Last Campaign Performance"
-                  date="campaign sent 2 days ago"
+                  title="Evolução da Receita"
+                  description="Receitas mensais dos últimos 6 meses"
+                  date="atualizado há 2 dias"
                   chart={reportsBarChartData}
                 />
               </MDBox>
@@ -119,14 +113,14 @@ function Dashboard() {
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
                 <ReportsLineChart
-                  color="success"
-                  title="daily sales"
+                  color="error"
+                  title="Despesas por Categoria"
                   description={
                     <>
-                      (<strong>+15%</strong>) increase in today sales.
+                      (<strong>-12%</strong>) redução nas despesas este mês.
                     </>
                   }
-                  date="updated 4 min ago"
+                  date="atualizado há 4 minutos"
                   chart={sales}
                 />
               </MDBox>
@@ -134,10 +128,10 @@ function Dashboard() {
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
                 <ReportsLineChart
-                  color="dark"
-                  title="completed tasks"
-                  description="Last Campaign Performance"
-                  date="just updated"
+                  color="success"
+                  title="Economia Mensal"
+                  description="Evolução da poupança ao longo do ano"
+                  date="atualizado agora"
                   chart={tasks}
                 />
               </MDBox>

@@ -1,16 +1,13 @@
 /**
 =========================================================
-* Finance Controller - Aplicação Principal
+* Finance Controller - Layout Principal
 =========================================================
 
-* Aplicativo de gestão financeira pessoal
-* Frontend criado com Material Dashboard 2 React
+* Layout base para o aplicativo de gestão financeira pessoal
 */
 
-import { useState, useEffect, useMemo } from "react";
-
-// react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
@@ -37,9 +34,6 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 
-// Material Dashboard 2 React routes
-import routes from "routes";
-
 // Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
@@ -47,7 +41,10 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 
-export default function App() {
+// Routes
+import routes from "routes";
+
+export default function FinanceLayout({ children }) {
   const [controller, dispatch] = useMaterialUIController();
   const {
     miniSidenav,
@@ -60,18 +57,13 @@ export default function App() {
     darkMode,
   } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
-  const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
 
   // Cache for the rtl
-  useMemo(() => {
-    const cacheRtl = createCache({
-      key: "rtl",
-      stylisPlugins: [rtlPlugin],
-    });
-
-    setRtlCache(cacheRtl);
-  }, []);
+  const cacheRtl = createCache({
+    key: "rtl",
+    stylisPlugins: [rtlPlugin],
+  });
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
@@ -105,12 +97,8 @@ export default function App() {
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
-      if (route.collapse) {
-        return getRoutes(route.collapse);
-      }
-
       if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        return route;
       }
 
       return null;
@@ -134,23 +122,23 @@ export default function App() {
       sx={{ cursor: "pointer" }}
       onClick={handleConfiguratorOpen}
     >
-      <Icon fontSize="small" color="inherit">
+      <Icon fontSize="default" color="inherit">
         settings
       </Icon>
     </MDBox>
   );
 
   return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
+    <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
         <CssBaseline />
         {layout === "dashboard" && (
           <>
             <Sidenav
               color={sidenavColor}
-              brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+              brand={(transparentSidenav && !darkMode) || (whiteSidenav && !darkMode) ? brandDark : brandWhite}
               brandName="Finance Controller"
-              routes={routes}
+              routes={getRoutes(routes)}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
             />
@@ -158,11 +146,7 @@ export default function App() {
             {configsButton}
           </>
         )}
-        {layout === "vr" && <Configurator />}
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-        </Routes>
+        {children}
       </ThemeProvider>
     </CacheProvider>
   ) : (
@@ -172,9 +156,9 @@ export default function App() {
         <>
           <Sidenav
             color={sidenavColor}
-            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brand={(transparentSidenav && !darkMode) || (whiteSidenav && !darkMode) ? brandDark : brandWhite}
             brandName="Finance Controller"
-            routes={routes}
+            routes={getRoutes(routes)}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
@@ -182,11 +166,7 @@ export default function App() {
           {configsButton}
         </>
       )}
-      {layout === "vr" && <Configurator />}
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
-      </Routes>
+      {children}
     </ThemeProvider>
   );
 }

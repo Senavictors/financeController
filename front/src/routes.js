@@ -37,11 +37,12 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
-import Billing from "layouts/billing";
-import RTL from "layouts/rtl";
-import Notifications from "layouts/notifications";
-import Profile from "layouts/profile";
+import Transactions from "layouts/transactions";
+import Accounts from "layouts/accounts";
+import Budgets from "layouts/budgets";
+import Goals from "layouts/goals";
+import Reports from "layouts/reports";
+import Settings from "layouts/settings";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 
@@ -59,47 +60,59 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Tables",
-    key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
-  },
-  {
-    type: "collapse",
-    name: "Billing",
-    key: "billing",
+    name: "Transações",
+    key: "transactions",
     icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
-    component: <Billing />,
+    route: "/transactions",
+    component: <Transactions />,
   },
   {
     type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
-    component: <RTL />,
+    name: "Contas",
+    key: "accounts",
+    icon: <Icon fontSize="small">account_balance</Icon>,
+    route: "/accounts",
+    component: <Accounts />,
   },
   {
     type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
+    name: "Orçamentos",
+    key: "budgets",
+    icon: <Icon fontSize="small">account_balance_wallet</Icon>,
+    route: "/budgets",
+    component: <Budgets />,
   },
   {
     type: "collapse",
-    name: "Profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
-    component: <Profile />,
+    name: "Metas",
+    key: "goals",
+    icon: <Icon fontSize="small">flag</Icon>,
+    route: "/goals",
+    component: <Goals />,
   },
   {
     type: "collapse",
-    name: "Sign In",
+    name: "Relatórios",
+    key: "reports",
+    icon: <Icon fontSize="small">bar_chart</Icon>,
+    route: "/reports",
+    component: <Reports />,
+  },
+  {
+    type: "divider",
+    key: "divider-1",
+  },
+  {
+    type: "collapse",
+    name: "Configurações",
+    key: "settings",
+    icon: <Icon fontSize="small">settings</Icon>,
+    route: "/settings",
+    component: <Settings />,
+  },
+  {
+    type: "collapse",
+    name: "Entrar",
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
     route: "/authentication/sign-in",
@@ -107,7 +120,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Sign Up",
+    name: "Cadastrar",
     key: "sign-up",
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/authentication/sign-up",
