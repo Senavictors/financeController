@@ -340,11 +340,9 @@ Encontrou um bug? Por favor, abra uma issue com:
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-## 👥 Autores
+## 👥 Autor
 
-- **João Silva** - *Desenvolvimento Frontend* - [GitHub](https://github.com/joaosilva)
-- **Maria Santos** - *Desenvolvimento Backend* - [GitHub](https://github.com/mariasantos)
-- **Pedro Oliveira** - *UI/UX Design* - [Behance](https://behance.net/pedrooliveira)
+- **Victor Hugo** - *Desenvolvedor Fullstack* - [GitHub](https://github.com/Senavictors)
 
 ## 🙏 Agradecimentos
 
@@ -355,12 +353,10 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 
 ## 📞 Suporte
 
-Para suporte, envie um email para: suporte@financecontroller.com ou entre em nosso [Discord](https://discord.gg/financecontroller)
-
 ---
 
 **⭐ Se este projeto te ajudou, considere dar uma estrela no GitHub! ⭐**
 
 ---
 
-*Última atualização: Novembro 2024*
+*Última atualização: Novembro 2025*
