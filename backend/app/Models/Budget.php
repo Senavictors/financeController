@@ -4,25 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Transaction extends Model
+class Budget extends Model
 {
-    protected $table = 'transactions';
+    protected $table = 'budgets';
     protected $primaryKey = 'id';
+    
     protected $fillable = [
         'user_id',
-        'description',
-        'amount',
-        'type',
         'category_id',
-        'account_id',
-        'transaction_date',
-        'notes'
+        'name',
+        'amount',
+        'period',
+        'start_date',
+        'end_date',
+        'spent',
+        'is_active'
     ];
 
     protected $casts = [
         'amount' => 'decimal:2',
-        'transaction_date' => 'date'
+        'spent' => 'decimal:2',
+        'start_date' => 'date',
+        'end_date' => 'date',
+        'is_active' => 'boolean'
     ];
 
     public function user(): BelongsTo
@@ -35,8 +41,8 @@ class Transaction extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function account(): BelongsTo
+    public function transactions(): HasMany
     {
-        return $this->belongsTo(Account::class);
+        return $this->hasMany(Transaction::class, 'category_id', 'category_id');
     }
 }

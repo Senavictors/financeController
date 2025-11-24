@@ -11,7 +11,7 @@ class StoreTransactionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'description' => 'required|string|max:255',
+            'amount' => 'required|numeric|min:0.01',
+            'type' => 'required|in:income,expense',
+            'category_id' => 'nullable|exists:categories,id',
+            'account_id' => 'nullable|exists:accounts,id',
+            'transaction_date' => 'required|date',
+            'notes' => 'nullable|string|max:1000'
         ];
     }
 }
