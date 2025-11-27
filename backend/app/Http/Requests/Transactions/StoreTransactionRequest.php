@@ -31,4 +31,29 @@ class StoreTransactionRequest extends FormRequest
             'notes' => 'nullable|string|max:1000'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'required' => 'O campo :attribute é obrigatório.',
+            'numeric' => 'O campo :attribute deve ser numérico.',
+            'min' => 'O campo :attribute deve ser maior ou igual a :min.',
+            'max' => 'O campo :attribute deve ser menor ou igual a :max.',
+            'in' => 'O campo :attribute deve ser um dos seguintes valores: :values.',
+            'exists' => 'O campo :attribute é inválido.',
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'description' => 'descrição',
+            'amount' => 'valor',
+            'type' => 'tipo',
+            'category_id' => 'categoria',
+            'account_id' => 'conta',
+            'transaction_date' => 'data da transação',
+            'notes' => 'notas',
+        ];
+    }
 }

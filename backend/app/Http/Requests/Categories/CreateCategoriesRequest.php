@@ -28,4 +28,25 @@ class CreateCategoriesRequest extends FormRequest
             'type' => 'nullable|string|in:income,expense,both'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'required' => 'O campo :attribute é obrigatório.',
+            'string' => 'O campo :attribute deve ser uma string.',
+            'max' => 'O campo :attribute deve ser menor ou igual a :max caracteres.',
+            'regex' => 'O campo :attribute deve ser um hexadecimal válido.',
+            'in' => 'O campo :attribute deve ser um dos seguintes valores: :values.',
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'name' => 'nome',
+            'description' => 'descrição',
+            'color' => 'cor',
+            'type' => 'tipo',
+        ];
+    }
 }
